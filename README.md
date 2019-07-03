@@ -53,6 +53,7 @@ Informar uma opção válida do menu quando for pedido (número, S, N).
 *A taxa sindical é retirada em cima do salário que o funcionário receberá, já sendo aplicada a taxa de serviços (ex.: o salário são R$ 1000, houve uma taxa de R$ 900, serão pagos R$ 810.00).
 
 #### Operação 8 – Undo/Redo.
+Não implementado.
 
 #### Operação 9 – Agenda de Pagamento
 O funcionário deve escolher uma opção válida em letras minúsculas.
