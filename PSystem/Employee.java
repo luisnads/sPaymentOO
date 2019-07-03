@@ -2,58 +2,47 @@ package PSystem;
 
 public abstract class Employee {
 
-    protected String name;
-    protected String address;
-    protected int id;
-    protected double totalSalary;
-    protected String paymentMethod;
-    protected String paymentDay;
-    protected boolean syndicate;
-    protected int syndicateId;
-    protected double syndicateTax;
+    String name, address, payMethod, paySchedule;
+    double forPay, syndTax;
+    int id, syndId;
+    boolean syndicate;
 
-    public Employee(String name, String address, int id, String paymentDay) {
+    public Employee(String name, String address, int id, String paySchedule) {
         this.name = name;
         this.address = address;
         this.id = id;
-        this.totalSalary = 0;
-        this.paymentMethod = "Depósito em conta bancária";
-        this.paymentDay = paymentDay;
+        this.payMethod = "Depósito em conta bancária";
         this.syndicate = false;
-        this.syndicateId = -1;
-        this.syndicateTax = 0;
+        this.syndId = -1;
+        this.syndTax = 0;
+        this.forPay = 0;
+        this.paySchedule = paySchedule;
     }
 
-    public void setPaymentDay(String paymentDay) {
-        this.paymentDay = paymentDay;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getAddress() {
-        return address;
-    }
-    public double getTotalSalary() {
-        return totalSalary;
-    }
-    public String getPaymentMethod() { return paymentMethod; }
-    public String getPaymentDay() { return paymentDay; }
-    public boolean getSyndicate() { return syndicate; }
-    public int getSyndicateId() { return syndicateId; }
-    public double getSyndicateTax() { return syndicateTax; }
-    public int getId() {
-        return id;
-    }
-    public void setTotalSalary(double totalSalary) {
-        this.totalSalary = totalSalary;
-    }
-    public void resetTotalSalary() {}
+    public int getId() { return this.id; }
+    public String getName() { return this.name; }
+    public double getForPay() { return this.forPay; }
+    public String getAddress() { return this.address; }
+    public String getPayMethod() { return this.payMethod; }
+    public boolean getSynd() { return this.syndicate; }
+    public int getSyndId() { return this.syndId; }
+    public double getSyndTax() { return this.syndTax; }
+    public String getPaySchedule() { return this.paySchedule; }
 
-    public abstract void setName(String name);
-    public abstract void setAddress(String address);
-    public abstract void setPaymentMethod(String paymentMethod);
-    public abstract void setSyndicate(boolean syndicate);
-    public abstract void setSyndicateId(int syndicateId);
-    public abstract void setSyndicateTax(double syndicateTax);
-    public abstract void setServiceTax(double serviceTax);
+    public void serviceTax(double value) {
+        if(syndicate) this.forPay -= value;
+        else System.out.println("Funcionário não pertecente ao sindicato!");
+    }
+    public void addForPay(double value) { forPay += value; }
+
+    public void setName(String name) { this.name = name; }
+    public void setAddress(String address) { this.address = address; }
+    public void setPayMethod(String payMethod) { this.payMethod = payMethod; }
+    public void setSyndicate(boolean check) { this.syndicate = check; }
+    public void setSyndicateId(int id) { this.syndId = id; }
+    public void setSyndTax(double tax) { this.syndTax = tax; }
+    public void setPaySchedule(String pSchedule) { this.paySchedule = pSchedule; }
+
+    public abstract void resetForPay();
+
 }
